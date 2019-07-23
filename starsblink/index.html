@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>星星闪烁</title>
+</head>
+<body style="background:#000">
+	<div id="stars"></div>
+	<script>
+	var stars =document.getElementById('stars');
+	var Obj = function(){}
+	Obj.prototype.drawStar= function(){
+		var odiv= document.createElement('div');
+		odiv.style.width='7px';
+		odiv.style.height='7px';
+		 odiv.style.position= 'relative';
+		 odiv.style.left= Math.floor(document.body.clientWidth*Math.random())+ 'px';
+		 odiv.style.top=Math.floor(document.body.clientHeight*Math.random())+"px";
+		 odiv.style.overflow='hidden';
+		 stars.appendChild(odiv);
+		  var ostar= document.createElement('img');
+		  ostar.style.width='49px';
+		  ostar.style.height='7px';
+		  ostar.src='./images/star.png';
+		  ostar.style.position='absolute';
+		  odiv.appendChild(ostar);
+		  Play(ostar);
+	}
+	function Play(ele) {
+		var i = Math.floor(Math.random()*7);
+		var timer = setInterval(function(){
+			if(i<7){
+				ele.style.left=-i*7+'px';
+				i++;
+			}else{
+				i=0;
+			}
+		},100)
+	}
+	for (var i=0;i<500;i++){
+		var obj=new Obj();
+		obj.drawStar();
+	}
+	</script>
+</body>
+</html>
